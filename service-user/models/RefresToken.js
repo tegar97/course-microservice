@@ -3,27 +3,27 @@ module.exports = (sequelize, DataTypes) => {
     "RefreshToken",
     {
       id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
       token: {
-        type: Sequelize.TEXT,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       user_id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNulll: false,
       },
       createdAt: {
-        fields: "created_at",
-        type: Sequelize.DATE,
+        field: "created_at",
+        type: DataTypes.DATE,
         allowNull: false,
       },
       updatedAt: {
-        fields: "updated_at",
-        type: Sequelize.DATE,
+        field: "updated_at",
+        type: DataTypes.DATE,
         allowNull: false,
       },
     },
