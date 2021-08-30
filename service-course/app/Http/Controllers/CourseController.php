@@ -13,10 +13,22 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         $course = Course::query();
+        $q = $request->query('q');
+        $status = $request->query('status');
+
+        $course->when($q, function ($query) use ($q) {
+            return $query->whereRaw("name Like '%" . strtolower($q) . "%'");
+        });
+        $course->when($q, function ($query) use ($status) {
+            return $query->where('status', '=', $status);
+        });
+
+
+
 
         return response()->json([
             "status" => 'success',
-            'data' => $course::paginate(10)
+            'data' => $course->paginate(10)
         ]);
     }
     public function create(Request $request)
@@ -123,6 +135,26 @@ class CourseController extends Controller
         return response()->json([
             'status' => 'sukses',
             'data' => $course
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $course = Course::find($id);
+
+        if (!$course) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'course not found'
+            ]);
+        }
+
+        $course->delete();
+
+
+        return response()->json([
+            'status' => 'sukses',
+            'message' => 'course deleted'
         ]);
     }
 }
