@@ -10,7 +10,6 @@ module.exports = async (req, res) => {
     refresh_token: "string",
     user_id: "number",
   };
-  console.log(refreshToken);
   const validate = v.validate(req.body, schema);
   if (validate.length) {
     return res.status(400).json({
