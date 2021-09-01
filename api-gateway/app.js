@@ -6,6 +6,8 @@ require("dotenv").config();
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const mediaRouter = require("./routes/media");
+const chapterRouter = require("./routes/chapters");
+
 const courseRouter = require("./routes/courses");
 const orderRouter = require("./routes/order");
 const paymentRouter = require("./routes/order");
@@ -24,6 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/courses", courseRouter);
+app.use("/chapters", verifyToken, chapterRouter);
 app.use("/media", mediaRouter);
 app.use("/orders", orderRouter);
 app.use("/payment", paymentRouter);
