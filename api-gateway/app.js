@@ -7,13 +7,16 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const mediaRouter = require("./routes/media");
 const chapterRouter = require("./routes/chapters");
-
+const lessonRouter = require("./routes/lessons");
 const courseRouter = require("./routes/courses");
 const orderRouter = require("./routes/order");
 const paymentRouter = require("./routes/order");
 const verifyToken = require("./middleware/verifyToken");
 const refreshTokenRouter = require("./routes/refreshTokens");
 const mentorsRouter = require("./routes/mentors");
+const imageCourseRouter = require("./routes/imageCourses");
+const MyCoureseRouter = require("./routes/myCourse");
+const ReviewsRouter = require("./routes/Reviews");
 
 var app = express();
 
@@ -27,6 +30,11 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/courses", courseRouter);
 app.use("/chapters", verifyToken, chapterRouter);
+app.use("/lessons", lessonRouter);
+app.use("/image-courses", imageCourseRouter);
+app.use("/my-courses", verifyToken, MyCoureseRouter);
+app.use("/reviews", verifyToken, ReviewsRouter);
+
 app.use("/media", mediaRouter);
 app.use("/orders", orderRouter);
 app.use("/payment", paymentRouter);
