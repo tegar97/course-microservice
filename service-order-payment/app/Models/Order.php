@@ -11,12 +11,12 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'status', 'user_id', 'course_id', 'metadata', 'snap_url'
+        'status', 'user_id', 'course_id', 'meta_data', 'snap_url'
     ];
 
     protected $cast = [
         'created_at' => 'datetime:Y-md H:m:s',
         'updated_at' => 'datetime:Y-md H:m:s',
-        'metadata' => 'array'
+        'meta_data' => 'array'
     ];
 }

@@ -11,12 +11,11 @@ class PaymentLog extends Model
     protected $table = 'payment_logs';
 
     protected $fillable = [
-        'status', 'payment_type', 'order_id', 'raw_response'
+        'status', 'payment_type', 'orders_id', 'raw_response'
     ];
 
     protected $cast = [
         'created_at' => 'datetime:Y-md H:m:s',
         'updated_at' => 'datetime:Y-md H:m:s',
-        'metadata' => 'array'
     ];
 }
